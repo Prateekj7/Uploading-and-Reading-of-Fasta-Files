@@ -1,0 +1,7 @@
+1. thelabel = Label(root, text="Beta Version")     # basic text using tkinter is called label
+2. thelabel.pack()     #display anywhere
+    pack(side=TOP)
+3. # frame - invisible rectangle where we can put things
+4. pack(fill = X) #stretch as much as parent in X direction
+5. To oranise widgets, use grid layout
+6. Entry() - for input
