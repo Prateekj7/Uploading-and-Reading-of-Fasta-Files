@@ -85,58 +85,59 @@ button_2.grid(row=14, column=1, sticky=E)
 root.mainloop()     #running infinitely
 
 
-#SQL COMMAND START
-# f = open(name, "r")
-# fstring = f.read()
-# 
-# flist = []
-# for line in fstring.split('\n'):
-#     flist.append(line.split('\t'))
-# 
-# 
-# # Open database connection
-# db = pymysql.connect("localhost", "cse", "se123project", "genevalidation")
-# 
-# # prepare a cursor object using cursor() method
-# cursor = db.cursor()
-# 
-# cursor.execute("DROP TABLE IF EXISTS SEPROJECT")
-# 
-# Slno = flist[0][0]; Info = flist[0][1]; Gene = flist[0][2]; counterA = flist[0][3]; counterT = flist[0][4]; counterG = flist[0][5]; counterC = flist[0][6]; gcper = flist[0][7]
-# 
-# query = """CREATE TABLE SEPROJECT(
-#         {} int not null,
-#         {} varchar(255) not null,
-#         {} text not null,
-#         {} int,
-#         {} int,
-#         {} int,
-#         {} int,
-#         {} int
-#         )""".format(Slno, Info, Gene, counterA, counterT, counterG, counterC, gcper)
-# 
-# 
-# cursor.execute(query)
-# 
-# 
-# del flist[0]
-# 
-# rows = ''
-# for i in range(len(flist) - 1):
-#     rows += "('{}', '{}','{}','{}','{}','{}', '{}', '{}')".format(flist[i][0], flist[i][1], flist[i][2], flist[i][3], flist[i][4], flist[i][5], flist[i][6], flist[i][7])
-#     if i != len(flist) - 2:
-#         rows += ','
-# 
-# sql = "INSERT INTO SEPROJECT VALUES" + rows
-# 
-# try:
-#     # Execute the SQL command
-#     cursor.execute(sql)
-#     # Commit your changes in the database
-#     db.commit()
-# except:
-#     # Rollback in case there is any error
-#     db.rollback()
-# 
-# # disconnect from server
-# db.close()
+#SQL COMMAND START################################################
+
+f = open(name, "r")
+fstring = f.read()
+
+flist = []
+for line in fstring.split('\n'):
+    flist.append(line.split('\t'))
+
+
+# Open database connection
+db = pymysql.connect("localhost", "cse", "se123project", "genevalidation")
+
+# prepare a cursor object using cursor() method
+cursor = db.cursor()
+
+cursor.execute("DROP TABLE IF EXISTS SEPROJECT")
+
+Slno = flist[0][0]; Info = flist[0][1]; Gene = flist[0][2]; counterA = flist[0][3]; counterT = flist[0][4]; counterG = flist[0][5]; counterC = flist[0][6]; gcper = flist[0][7]
+
+query = """CREATE TABLE SEPROJECT(
+        {} int not null,
+        {} varchar(255) not null,
+        {} text not null,
+        {} int,
+        {} int,
+        {} int,
+        {} int,
+        {} int
+        )""".format(Slno, Info, Gene, counterA, counterT, counterG, counterC, gcper)
+
+
+cursor.execute(query)
+
+
+del flist[0]
+
+rows = ''
+for i in range(len(flist) - 1):
+    rows += "('{}', '{}','{}','{}','{}','{}', '{}', '{}')".format(flist[i][0], flist[i][1], flist[i][2], flist[i][3], flist[i][4], flist[i][5], flist[i][6], flist[i][7])
+    if i != len(flist) - 2:
+        rows += ','
+
+sql = "INSERT INTO SEPROJECT VALUES" + rows
+
+try:
+    # Execute the SQL command
+    cursor.execute(sql)
+    # Commit your changes in the database
+    db.commit()
+except:
+    # Rollback in case there is any error
+    db.rollback()
+
+# disconnect from server
+db.close()
